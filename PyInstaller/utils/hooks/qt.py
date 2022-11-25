@@ -48,7 +48,8 @@ class QtLibraryInfo:
                 # The call below might fail with AttributeError on some PyQt5 versions (e.g., 5.9.2 from conda's main
                 # channel); missing dist information forces a fallback codepath that tries to check for __version__
                 # attribute that does not exist, either. So handle the error gracefully and assume old layout.
-                new_layout = hooks.is_module_satisfies("PyQt5 >= 5.15.4")
+                new_layout = hooks.is_module_satisfies("PyQt5-commercial >= 5.15.4"
+                                                       ) or hooks.is_module_satisfies("PyQt5 >= 5.15.4")
             except AttributeError:
                 new_layout = False
             if new_layout:
